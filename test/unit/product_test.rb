@@ -29,10 +29,10 @@ class ProductTest < ActiveSupport::TestCase
   end
   
   def new_product(image_url)
-    Product.new (:title       => "My Book Title",
-                 :description => "yyy",
-                 :price       => 1,
-                 :image_url   => image_url)
+    Product.new(:title       => "My Book Title",
+                :description => "yyy",
+                :price       => 1,
+                :image_url   => image_url)
   end  
   
   test "image url" do
@@ -56,5 +56,15 @@ class ProductTest < ActiveSupport::TestCase
     assert !product.save
     assert_equal I18n.translate('activerecord.errors.messages.taken'), 
                  product.errors[:title].join('; ')
+  end
+  
+  test "product title must be at least 10 characters long" do
+    product = Product.new(:title       => "My Book",
+                          :description => "yyy",
+                          :price       => 1,
+                          :image_url   => "fred.gif")
+    assert product.invalid?
+    assert_equal "Pick longer title",
+      product.errors[:title].join('; ')
   end
 end

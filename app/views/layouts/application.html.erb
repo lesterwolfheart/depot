@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag "scaffold" %>
   <%= stylesheet_link_tag "depot", :media => "all" %>
 <!--  <%= javascript_include_tag "application" %> -->
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :application %>
   <%= csrf_meta_tags %>
 </head>
 <body id="store">
@@ -26,6 +26,12 @@
       </div>
     </div>
     <div id="main">
+      <div id="session_counter">
+       <br />
+       <%= if session[:counter] > 5
+         "You have been here " + pluralize(session[:counter],"time")
+       end %>
+      </div>
       <%= yield %>
     </div>
   </div>

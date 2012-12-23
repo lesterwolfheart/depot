@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CartsControllerTest < ActionController::TestCase
   setup do
-    @cart = carts(:one)
+    @cart = carts(:cart_one)
   end
 
   test "should get index" do
@@ -25,12 +25,12 @@ class CartsControllerTest < ActionController::TestCase
   end
 
   test "should show cart" do
-    get :show, :id => @cart
+    get :show, {:id => @cart}
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, :id => @cart
+    get :edit, {:id => @cart}, {:user_id => 1}
     assert_response :success
   end
 

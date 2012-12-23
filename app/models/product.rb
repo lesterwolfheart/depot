@@ -11,7 +11,7 @@ class Product < ActiveRecord::Base
     :with    => %r{\.(gif|jpg|png)$}i,
     :message => 'must be a URL for GIF, JPG or PNG image.'
   }
-#  attr_accessible :description, :image_url, :price, :title
+  attr_accessible :description, :image_url, :price, :title
 
   private
 

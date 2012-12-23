@@ -1,18 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+product_one:
   title: MyString
   description: MyText
   image_url: MyString
   price: 9.99
 
-two:
+product_two:
   title: MyString
   description: MyText
   image_url: MyString
   price: 9.99
 
-ruby:
+product_ruby:
   title:       Programming Ruby 1.9
   description: 
     Ruby is the fastest growing and most exciting dynamic

@@ -50,11 +50,22 @@ class ProductsControllerTest < ActionController::TestCase
     assert_redirected_to product_path(assigns(:product))
   end
 
-  test "should destroy product" do
+  test "should not destroy product" do
+    #Product should not be destoryed as it is referenced by a line item
+    assert_difference('Product.count', 0) do
+      delete :destroy, :id => products(:product_one)
+    end
+
+    assert_redirected_to products_path
+  end
+
+  test "shoulddestroy product" do
+    #Product should be destoryed as it is not referenced by any line item
     assert_difference('Product.count', -1) do
       delete :destroy, :id => products(:product_ruby)
     end
 
     assert_redirected_to products_path
   end
+
 end

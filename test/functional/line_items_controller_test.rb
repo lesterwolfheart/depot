@@ -4,6 +4,7 @@ class LineItemsControllerTest < ActionController::TestCase
   setup do
     @line_item = line_items(:line_item_one)
     @product = products(:product_two)
+    @cart = carts(:cart_one)
   end
 
   test "should get index" do
@@ -22,7 +23,21 @@ class LineItemsControllerTest < ActionController::TestCase
       post :create, :product_id => @product.id
     end
 
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_path
+  end
+
+  test "should create line item via ajax" do
+    assert_difference('LineItem.count', 1) do
+      # XMLHttpRequest
+      xhr :post, :create, :product_id => products(:product_ruby).id
+    end
+    # Instead of redirect successful response is expected containing
+    # a call to replace the HTML for the cart
+    assert_response :success
+    # In that HTML we expect the row with value of Programming Ruby 1.9
+    assert_select_jquery :html, '#cart' do
+      assert_select 'tr#current_item td', /Programming Ruby 1.9/
+    end
   end
 
   test "should show line_item" do

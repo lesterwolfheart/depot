@@ -173,6 +173,11 @@
   font-weight: bold;
   border-top: 1px solid #595;
 }
+#store .product_picture {
+  width: 75px;
+  float: left;
+  text-decoration: none;
+}
 /* END:cartmain */
 
 /* START:cartside */
